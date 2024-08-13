@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://xye38rl62th3"]
+
+[ext_resource type="Script" path="res://scripts/guest.gd" id="1_638wm"]
+
+[node name="GuestContainer" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_638wm")
+
+[node name="GuestIcon" type="Label" parent="."]
+layout_mode = 2
+
+[node name="GuestName" type="Label" parent="."]
+layout_mode = 2
+
+[node name="EditButton" type="Button" parent="."]
+layout_mode = 2
+text = "E"
+
+[node name="RemoveButton" type="Button" parent="."]
+layout_mode = 2
+text = "D"
