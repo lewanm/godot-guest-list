@@ -1,15 +1,14 @@
-extends HBoxContainer
+extends VBoxContainer
 
-@onready var guest_icon = $GuestIcon
-@onready var guest_name = $GuestName
+@onready var guest_icon = $GuestName/GuestIcon
+@onready var guest_name = $GuestName/GuestName
+@onready var guest_relationship = $GuestRelationship
 
 var guest
 
 func _ready():
-	#guest_icon.text = get_name_initials(guest["name"])
-	#guest_name.text = guest["name"]
-	pass
-	
+	set_guest_info(guest)
+
 func constructor(guest_data: Dictionary) -> void:
 	guest = guest_data
 
@@ -23,3 +22,15 @@ func get_name_initials(full_name:String) -> String:
 			initials += name_[0].to_upper()
 			
 	return initials
+
+func set_guest_info(guest:Dictionary)-> void:
+	guest_icon.text = get_name_initials(guest["name"])
+	guest_name.text = guest["name"]
+	guest_relationship.text = guest["relationship"]
+	print(guest)
+
+func _on_edit_button_pressed():
+	pass # Replace with function body.
+
+func _on_remove_button_pressed():
+	SERVICE.disable_guest(guest["id"])

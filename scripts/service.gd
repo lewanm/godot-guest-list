@@ -5,7 +5,7 @@ var save_guest_path: String = "user://save_guest_data.json"
 
 func _ready():
 	load_data()
-	print("loaded data:\n", read_guest())
+	#print("loaded data:\n", read_guest())
 	
 
 	#disable_guest(2)
@@ -28,7 +28,7 @@ func create_guest(name_value: String, relationship_value: String)-> void:
 	
 	loaded_data["guests"].append(new_guest)
 	
-	save_data(loaded_data)
+	save_data(loaded_data, save_guest_path)
 
 func read_guest():
 	return loaded_data["guests"]
@@ -42,29 +42,26 @@ func update_guest(id: int, name_value:String, relationship:String)-> void:
 	updated_guest["relationship"] = relationship
 
 	loaded_data["guests"][id] = updated_guest
-	save_data(loaded_data)
+	save_data(loaded_data, save_guest_path)
 	#print(loaded_data)
 	#pass
 
 func disable_guest(id:int) -> void:
 	loaded_data["guests"][id]["active"] = false
-	save_data(loaded_data)
+	save_data(loaded_data, save_guest_path)
 
 #############GUESTS_CRUD#############
 
-func get_guest_list() -> Array:
-	return []
-
-func save_data(data_list:Dictionary) -> void:
+func save_data(data_list:Dictionary, path:String) -> void:
 	#Al finalizar y que funcione, optimizar el guardado
 	var json_data: String = JSON.stringify(data_list)
 	
-	var file = FileAccess.open(save_guest_path, FileAccess.ModeFlags.WRITE)
+	var file = FileAccess.open(path, FileAccess.ModeFlags.WRITE)
 	
 	if file:
 		file.store_string(json_data)
 		file.close()
-		print("Se guardo exitosamente en: ", save_guest_path)
+		print("Se guardo exitosamente en: ", path)
 	else:
 		print("No se pudo guardar la informacion")
 

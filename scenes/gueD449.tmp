@@ -12,11 +12,11 @@ layout_mode = 2
 
 [node name="GuestIcon" type="Label" parent="GuestName"]
 layout_mode = 2
-text = "PH	"
+text = "EP"
 
 [node name="GuestName" type="Label" parent="GuestName"]
 layout_mode = 2
-text = "Place holder"
+text = "Exam Ple"
 
 [node name="EditButton" type="Button" parent="GuestName"]
 layout_mode = 2

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://hxltbygqhq0g"]
+
+[ext_resource type="PackedScene" uid="uid://w5avh07l2vbp" path="res://scenes/guest_list.tscn" id="1_7851d"]
+[ext_resource type="PackedScene" uid="uid://c38j6xo21ki0e" path="res://scenes/guest_form.tscn" id="2_l64db"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GuestList" parent="." instance=ExtResource("1_7851d")]
+layout_mode = 1
+offset_right = 290.0
+offset_bottom = 639.0
+
+[node name="GuestForm" parent="." instance=ExtResource("2_l64db")]
+layout_mode = 1

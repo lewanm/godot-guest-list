@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://c38j6xo21ki0e"]
+
+[ext_resource type="Script" path="res://scripts/guest_form.gd" id="1_uhsv2"]
+
+[node name="GuestFormContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uhsv2")
+
+[node name="GuestForm" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GuestName" type="Label" parent="GuestForm"]
+layout_mode = 2
+text = "Nombre y Apellido"
+
+[node name="GuestNameInput" type="LineEdit" parent="GuestForm"]
+layout_mode = 2
+
+[node name="GuestRelationship" type="Label" parent="GuestForm"]
+layout_mode = 2
+text = "Relacion"
+
+[node name="GuestRelationshipInput" type="LineEdit" parent="GuestForm"]
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="GuestForm"]
+layout_mode = 2
+
+[node name="AcceptButton" type="Button" parent="GuestForm/ButtonContainer"]
+layout_mode = 2
+text = "Aceptar"
+
+[node name="CancelButton" type="Button" parent="GuestForm/ButtonContainer"]
+layout_mode = 2
+text = "Cancelar
+"
+
+[connection signal="pressed" from="GuestForm/ButtonContainer/AcceptButton" to="GuestForm" method="_on_accept_button_pressed"]
+[connection signal="pressed" from="GuestForm/ButtonContainer/CancelButton" to="GuestForm" method="_on_cancel_button_pressed"]
