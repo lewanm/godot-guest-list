@@ -26,6 +26,7 @@ text = "Nuevo Invitado"
 layout_mode = 2
 
 [node name="GuestForm" parent="." instance=ExtResource("2_l64db")]
+visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="Guests/NewGuestButton" to="." method="_on_new_guest_button_pressed"]

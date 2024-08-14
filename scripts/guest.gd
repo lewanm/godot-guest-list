@@ -4,7 +4,7 @@ extends VBoxContainer
 @onready var guest_name = $GuestName/GuestName
 @onready var guest_relationship = $GuestRelationship
 
-var guest
+var guest: Dictionary
 
 func _ready():
 	set_guest_info(guest)
@@ -27,10 +27,9 @@ func set_guest_info(guest:Dictionary)-> void:
 	guest_icon.text = get_name_initials(guest["name"])
 	guest_name.text = guest["name"]
 	guest_relationship.text = guest["relationship"]
-	print(guest)
 
 func _on_edit_button_pressed():
-	pass # Replace with function body.
+	SERVICE.set_create_update_window(true,guest)
 
 func _on_remove_button_pressed():
 	SERVICE.disable_guest(guest["id"])

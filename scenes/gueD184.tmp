@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://xye38rl62th3"]
+
+[ext_resource type="Script" path="res://scripts/guest.gd" id="1_638wm"]
+
+[node name="GuestContaiener" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_638wm")
+
+[node name="GuestName" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="GuestIcon" type="Label" parent="GuestName"]
+layout_mode = 2
+text = "PH	"
+
+[node name="GuestName" type="Label" parent="GuestName"]
+layout_mode = 2
+text = "Place holder"
+
+[node name="EditButton" type="Button" parent="GuestName"]
+layout_mode = 2
+text = "E"
+
+[node name="RemoveButton" type="Button" parent="GuestName"]
+layout_mode = 2
+text = "D"
+
+[node name="GuestRelationship" type="Label" parent="."]
+layout_mode = 2
+
+[connection signal="pressed" from="GuestName/EditButton" to="." method="_on_edit_button_pressed"]
+[connection signal="pressed" from="GuestName/RemoveButton" to="." method="_on_remove_button_pressed"]

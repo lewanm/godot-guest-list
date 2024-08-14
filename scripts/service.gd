@@ -1,16 +1,23 @@
 extends Node
 
 var loaded_data: Dictionary
+var create_update_window: Node
 var save_guest_path: String = "user://save_guest_data.json"
+
+#revisar todo lo que esta re choto a ver si lo hago asi, o encuentro una forma mejor...
+signal deleted_guest
 
 func _ready():
 	load_data()
-	#print("loaded data:\n", read_guest())
+	create_update_window = get_tree().root.get_node("UI/GuestForm")
+
+func set_create_update_window(visible:bool, guest_info:Dictionary = {}) -> void: 
+	#ver como hago esto mas lindo, tengo sueño :(
+	if guest_info.is_empty():
+		create_update_window.set_visibility(visible)
+	else:
+		create_update_window.set_visibility(visible,guest_info)
 	
-
-	#disable_guest(2)
-	#update_guest(1,"Sabrina Galera","La novia")
-
 	
 #############GUESTS_CRUD#############
 
@@ -23,7 +30,7 @@ func create_guest(name_value: String, relationship_value: String)-> void:
 		"id" : next_index,
 		"name" : name_value,
 		"relationship" : relationship_value,
-		"status": true
+		"active": true
 	}
 	
 	loaded_data["guests"].append(new_guest)
@@ -43,12 +50,13 @@ func update_guest(id: int, name_value:String, relationship:String)-> void:
 
 	loaded_data["guests"][id] = updated_guest
 	save_data(loaded_data, save_guest_path)
-	#print(loaded_data)
-	#pass
+
 
 func disable_guest(id:int) -> void:
 	loaded_data["guests"][id]["active"] = false
+	deleted_guest.emit()
 	save_data(loaded_data, save_guest_path)
+
 
 #############GUESTS_CRUD#############
 
