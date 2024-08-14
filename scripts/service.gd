@@ -1,24 +1,29 @@
+## AHORA CUANDO ESTE ESTO LISTO, VOY A COMENZAR CON LAS MESAS.
+## CONVIENE QUE ESTE SCRIPT SOLO SEA PARA INVITADOS Y EL OTRO MESAS?
+
 extends Node
 
 var loaded_data: Dictionary
-var create_update_window: Node
 var save_guest_path: String = "user://save_guest_data.json"
 
-#revisar todo lo que esta re choto a ver si lo hago asi, o encuentro una forma mejor...
 signal deleted_guest
 
 func _ready():
 	load_data()
-	create_update_window = get_tree().root.get_node("UI/GuestForm")
 
-func set_create_update_window(visible:bool, guest_info:Dictionary = {}) -> void: 
-	#ver como hago esto mas lindo, tengo sueño :(
-	if guest_info.is_empty():
-		create_update_window.set_visibility(visible)
+func set_is_visible(status:bool, node_name:String, id = null)-> void:
+	var node = get_tree().root.find_child(node_name, true, false)
+	if !node:
+		print("El nodo no existe")
+		return
+	
+	if id:
+		node.set_data_edit(id)
 	else:
-		create_update_window.set_visibility(visible,guest_info)
-	
-	
+		node.set_data_create()
+
+	node.visible = status
+
 #############GUESTS_CRUD#############
 
 func create_guest(name_value: String, relationship_value: String)-> void:
@@ -37,8 +42,11 @@ func create_guest(name_value: String, relationship_value: String)-> void:
 	
 	save_data(loaded_data, save_guest_path)
 
-func read_guest():
+func read_guests():
 	return loaded_data["guests"]
+	
+func read_guest(id:int):
+	return loaded_data["guests"][id]
 
 func update_guest(id: int, name_value:String, relationship:String)-> void:
 	#Ver como mejorar esto, ta fiero
@@ -51,12 +59,10 @@ func update_guest(id: int, name_value:String, relationship:String)-> void:
 	loaded_data["guests"][id] = updated_guest
 	save_data(loaded_data, save_guest_path)
 
-
 func disable_guest(id:int) -> void:
 	loaded_data["guests"][id]["active"] = false
 	deleted_guest.emit()
 	save_data(loaded_data, save_guest_path)
-
 
 #############GUESTS_CRUD#############
 

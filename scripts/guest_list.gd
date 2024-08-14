@@ -10,10 +10,10 @@ func _ready():
 
 func update_guest_list()-> void:
 	clear_guest_list()
-	guest_list = SERVICE.read_guest()
+	guest_list = SERVICE.read_guests()
 	for i in range(guest_list.size()):
 		render_guest(i)
-	
+
 func clear_guest_list()->void:                                                                                                                                                                                                                                                                                                                                                                                                                                   
 	var old_guest_list = get_children()
 	for guest in old_guest_list:
@@ -25,8 +25,8 @@ func render_guest(id)-> void:
 		new_guest_scene.constructor(guest_list[id])
 		add_child(new_guest_scene)
 
-func _on_guest_form_created_new_guest():
+func _on_deleted_guest_received():
 	update_guest_list()
 
-func _on_deleted_guest_received():
+func _on_guest_form_container_updated_list():
 	update_guest_list()

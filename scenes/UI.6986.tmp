@@ -29,4 +29,3 @@ layout_mode = 2
 layout_mode = 1
 
 [connection signal="pressed" from="Guests/NewGuestButton" to="." method="_on_new_guest_button_pressed"]
-[connection signal="updated_list" from="GuestFormContainer" to="Guests/GuestList" method="_on_guest_form_container_updated_list"]

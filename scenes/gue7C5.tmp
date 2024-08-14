@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://scripts/guest_form.gd" id="1_uhsv2"]
 
 [node name="GuestFormContainer" type="PanelContainer"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -33,25 +32,14 @@ layout_mode = 2
 [node name="ButtonContainer" type="HBoxContainer" parent="GuestForm"]
 layout_mode = 2
 
-[node name="CreateButton" type="Button" parent="GuestForm/ButtonContainer"]
-visible = false
+[node name="AcceptButton" type="Button" parent="GuestForm/ButtonContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Crear"
-
-[node name="EdditButton" type="Button" parent="GuestForm/ButtonContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Editar"
+text = "Aceptar"
 
 [node name="CancelButton" type="Button" parent="GuestForm/ButtonContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 text = "Cancelar
 "
 
-[connection signal="hidden" from="." to="." method="_on_hidden"]
-[connection signal="pressed" from="GuestForm/ButtonContainer/CreateButton" to="." method="_on_create_button_pressed"]
-[connection signal="pressed" from="GuestForm/ButtonContainer/EdditButton" to="." method="_on_eddit_button_pressed"]
+[connection signal="pressed" from="GuestForm/ButtonContainer/AcceptButton" to="." method="_on_accept_button_pressed"]
 [connection signal="pressed" from="GuestForm/ButtonContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

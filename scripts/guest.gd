@@ -29,7 +29,7 @@ func set_guest_info(guest:Dictionary)-> void:
 	guest_relationship.text = guest["relationship"]
 
 func _on_edit_button_pressed():
-	SERVICE.set_create_update_window(true,guest)
+	SERVICE.set_is_visible(true,"GuestFormContainer",guest["id"])
 
 func _on_remove_button_pressed():
 	SERVICE.disable_guest(guest["id"])
