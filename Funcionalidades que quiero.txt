@@ -1,0 +1,2 @@
+En el formulario que se pueda aceptar con enter
+En el formulario que se pueda cancelar con esc

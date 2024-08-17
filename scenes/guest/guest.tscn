@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://xye38rl62th3"]
 
-[ext_resource type="Script" path="res://scripts/guest.gd" id="1_638wm"]
+[ext_resource type="Script" path="res://scripts/guest.gd" id="1_s45dl"]
 
 [node name="GuestContaiener" type="VBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_638wm")
+script = ExtResource("1_s45dl")
 
 [node name="GuestName" type="HBoxContainer" parent="."]
 layout_mode = 2

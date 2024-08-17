@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd8yt4paryda8"]
+
+[ext_resource type="Script" path="res://scripts/table_count.gd" id="1_huowf"]
+
+[node name="Tables" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_huowf")
+
+[node name="TableContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TableCount" type="Label" parent="TableContainer"]
+layout_mode = 2
+text = "Cantidad de mesas:"
+
+[node name="TableCountValue" type="Label" parent="TableContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="TableButtonContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="DecreaseButton" type="Button" parent="TableButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "-"
+
+[node name="IncreaseButton" type="Button" parent="TableButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+"
+
+[connection signal="resized" from="TableContainer/TableCountValue" to="." method="_on_table_count_value_resized"]
+[connection signal="pressed" from="TableButtonContainer/DecreaseButton" to="." method="_on_decrease_button_pressed"]
+[connection signal="pressed" from="TableButtonContainer/IncreaseButton" to="." method="_on_increase_button_pressed"]

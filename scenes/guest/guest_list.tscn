@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://w5avh07l2vbp"]
 
 [ext_resource type="Script" path="res://scripts/guest_list.gd" id="1_xkmce"]
-[ext_resource type="PackedScene" uid="uid://xye38rl62th3" path="res://scenes/guest.tscn" id="2_0wxga"]
+[ext_resource type="PackedScene" uid="uid://xye38rl62th3" path="res://scenes/guest/guest.tscn" id="2_0wxga"]
 
 [node name="GuestList" type="VBoxContainer"]
 offset_right = 1154.0

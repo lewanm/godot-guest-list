@@ -4,12 +4,14 @@
 extends Node
 
 var loaded_data: Dictionary
+#var save_tables_path: String = "user://save_table_data.json"
 var save_guest_path: String = "user://save_guest_data.json"
 
 signal deleted_guest
 
 func _ready():
 	load_data()
+	print(read_tables())
 
 func set_is_visible(status:bool, node_name:String, id = null)-> void:
 	var node = get_tree().root.find_child(node_name, true, false)
@@ -23,6 +25,11 @@ func set_is_visible(status:bool, node_name:String, id = null)-> void:
 		node.set_data_create()
 
 	node.visible = status
+
+func _table_count_changed(table_amount:int):
+	modify_table_count(table_amount)
+	
+	
 
 #############GUESTS_CRUD#############
 
@@ -46,6 +53,9 @@ func read_guests():
 	return loaded_data["guests"]
 	
 func read_guest(id:int):
+	if(loaded_data["guests"].size() - 1  < id):
+		print("El id solicitado no existe")
+		return
 	return loaded_data["guests"][id]
 
 func update_guest(id: int, name_value:String, relationship:String)-> void:
@@ -65,6 +75,23 @@ func disable_guest(id:int) -> void:
 	save_data(loaded_data, save_guest_path)
 
 #############GUESTS_CRUD#############
+
+#############TABLES_CRUD#############
+
+func read_tables():
+	return loaded_data["tables"]["table_list"]
+
+func read_tables_count() -> int:
+	return loaded_data["tables"]["count"]
+
+func modify_table_count(amount:int) -> void:
+	loaded_data["tables"]["count"] = amount
+	print("table_count: " ,loaded_data["tables"]["count"])
+	
+	
+	save_data(loaded_data, save_guest_path)
+
+#############TABLES_CRUD#############
 
 func save_data(data_list:Dictionary, path:String) -> void:
 	#Al finalizar y que funcione, optimizar el guardado
